@@ -1,0 +1,17 @@
+Extra parameters for the CWB
+
+&FIRST_STAR
+M_dot1 = 1.0
+Mach_1 = 30.0
+v_inf1 = 422.0 ! a ameliorer, (422/a)
+R0_1   = 0.092
+epsilon_star1 = 0.046
+/
+
+&SECOND_STAR
+M_dot2 = 1.0
+Mach_2 = 30.0
+v_inf2 = 422.0 ! a ameliorer, (422/a)
+R0_2   = 0.092
+epsilon_star2 = 0.046       
+/

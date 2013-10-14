@@ -1,0 +1,20 @@
+&FIRST_STAR
+M_dot1 = 10.0
+Mach_1 = 30.0
+v_inf1 = 422.0 
+R0_1   = 0.05
+epsilon_star1 = 0.046
+/
+
+&SECOND_STAR
+M_dot2 = 0.0015
+Mach_2 = 30.0
+v_inf2 = 76660.0 
+R0_2   = 0.015
+epsilon_star2 = 0.046       
+/
+
+&AMBIENT_MEDIUM
+a = 0.14
+period=0.01
+/

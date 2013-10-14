@@ -1,0 +1,11 @@
+pro shock
+
+rd_1d,data
+out1=*data[2]
+taille=findgen(out1.nc)/out1.nc
+
+psopen,'density.ps'
+plot,test,out1.d,psym=2,xtitle='position',ytitle='density',title='density in shock tube',charsize=1.4
+psclose
+
+end

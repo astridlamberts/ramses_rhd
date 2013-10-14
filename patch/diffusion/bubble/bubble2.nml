@@ -1,0 +1,86 @@
+
+This namelist contains various input parameters for RAMSES runs
+
+&RUN_PARAMS  
+hydro=.true.
+poisson=.true.
+simple_boundary=.true.
+nrestart=0
+ncontrol=10
+nbackup=1000
+nremap=10
+nsubcycle=30*1
+diffusion=.true.
+static=.false.
+/
+
+&AMR_PARAMS 
+levelmin=8
+levelmax=8
+ngridmax=50000
+nexpand=1
+boxlen= 100.0
+/
+
+&BOUNDARY_PARAMS
+nboundary = 4
+ibound_min= 0, 0,-1,+1
+ibound_max= 0, 0,-1,+1
+jbound_min=-1,+1,-1,-1
+jbound_max=-1,+1,+1,+1
+bound_type= 3, 3, 2, 2
+d_bound(1)=1.0,0.1
+p_bound(1)=1.0,0.1
+t_bound(1)=0.50,0.50
+! 0.052558223
+/ 
+
+ 
+&INIT_PARAMS
+nregion=2
+region_type(1)='square'
+region_type(2)='square'
+x_center=50.0 , 50.0
+y_center=50.0 , 10.0
+length_x=100.0 , 2.0
+length_y=100.0 , 2.0 
+exp_region(1)=10.0,1.0 
+d_region=1.0 , 0.0
+p_region= 1.0 ,0.0
+u_region=0.0 , 0.0
+v_region=0.0 , 0.0
+t_region=0.5  , 25.0
+/
+
+&OUTPUT_PARAMS
+foutput=10
+noutput=4
+tout=0.0,46.72,93.44,156.
+/
+
+&POISSON_PARAMS 
+gravity_type=1
+gravity_params=0.0,-4.60517d-2,0.0
+/
+
+&HYDRO_PARAMS
+gamma=1.6667
+courant_factor=0.8
+slope_type=1
+scheme='muscl'
+mass_input=5.0d-3
+dt_control=.true.
+dtexpl_params=1.0d-5,1.01
+chi_type='analytic'
+chi_params=2.9,0.0,2.5
+omega_type='analytic'
+omega_params=2.1443,1.0,-1.5
+/
+
+&REFINE_PARAMS 
+err_grad_d=0.01
+interpol_type=2
+/
+
+
+

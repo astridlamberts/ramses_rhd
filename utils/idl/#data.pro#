@@ -1,0 +1,21 @@
+; routine qui sert a la lecture des sorties, elle lit la grille
+; (rd_amr), les variables hydro (rd_hydro), met les cellules
+; dans l'ordre (amr2cell) et affiche ce qu'on veut qu'elle
+; affiche (tv2d avec type)
+
+pro data, grid, hydro,noutput,type=type, log=log, xr=xr,yr=yr, save=data,clt=clt
+
+;data=fltarr(128,128)
+;data=fltarr(128,128)
+data=fltarr(128,128)
+
+rd_amr,grid
+rd_hydro,hydro
+amr2cell, grid, hydro, cell
+
+tv2d, grid, hydro, type=type, log=log, xr=xr,yr=yr, save=data,clt=clt
+
+
+
+
+end

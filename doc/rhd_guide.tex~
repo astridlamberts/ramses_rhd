@@ -1,0 +1,51 @@
+\documentclass[twoside,12pt]{article}
+\usepackage[T1]{fontenc}
+%\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{natbib}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{chapterbib}
+%\usepackage{vmargin}
+\usepackage{pdfpages}
+
+
+%\usepackage[francais]{babel}
+%\setmarginsrb{3cm}{1.6cm}{3cm}{2cm}{0cm}{2cm}{1cm}{0.7cm}
+%1 est la marge gauche
+%2 est la marge en haut
+%3 est la marge droite
+%4 est la marge en bas
+%5 fixe la hauteur de l'entête
+%6 fixe la distance entre l'entête et le texte
+%7 fixe la hauteur du pied de page
+%8 fixe la distance entre le texte et le pied de page
+
+\textwidth 15.2cm
+\textheight 24cm
+\oddsidemargin=0.cm	\evensidemargin=0.cm	\topmargin=-1cm
+\parskip=0cm
+
+
+
+
+\begin{document}
+%\vspace{ -10 cm}
+\title{Quick user's guide to RAMSES RHD}
+\author{Astrid Lamberts}
+\date\today%{December, 2011}
+\maketitle
+%\tableofcontents
+\begin{section}{Gamma-ray binaries}
+  \begin{itemize}
+  \item Increase refinement by only one level at each restars
+\item decrease nremap to 2 if restart crashes
+  \item The mask around the pulsar should have enough resolution to
+    avoid pressure problems. For v=.99, for lbox=8, lmax=11 is a
+    minimum.
+\item The first body in the namelist is the ``star'', meaning that the
+  passive scalar=1 in its atmosphere.
+  \end{itemize}
+
+
+\end{document}

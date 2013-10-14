@@ -1,0 +1,20 @@
+Extra parameters for the CWB
+
+&FIRST_STAR
+M_dot1 = 10.0d0
+Mach_1 = 30.0d0
+v_inf1 = 422.0d0
+R0_1   = 0.069d0
+epsilon_star1 = 0.046d0
+/
+
+&SECOND_STAR
+M_dot2 = 1.5d0*10**(-3)
+Mach_2 = 30.0d0
+v_inf2 = 56600 
+R0_2   = 0.069d0
+/
+
+&AMBIENT_MEDIUM
+a=0.40d0
+/

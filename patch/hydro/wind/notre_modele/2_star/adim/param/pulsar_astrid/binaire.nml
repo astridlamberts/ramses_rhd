@@ -1,0 +1,55 @@
+*This namelist contains various input parameters for RAMSES runs
+
+&RUN_PARAMS  
+hydro=.true.
+ncontrol=1
+nremap=10
+nsubcycle=1,1,1,1,1,2
+nrestart=0
+nstepmax = 10000000
+/
+
+&AMR_PARAMS 
+levelmin=5
+levelmax=9
+ngridmax=100000
+boxlen=10.0
+/
+
+
+&BOUNDARY_PARAMS
+nboundary = 4
+ibound_min= 0, 0,-1,+1
+ibound_max= 0, 0,-1,+1
+jbound_min=-1,+1,-1,-1
+jbound_max=-1,+1,+1,+1
+bound_type= 2, 2, 2, 2
+/
+
+
+
+&INIT_PARAMS
+/
+
+&OUTPUT_PARAMS
+
+tend =  0.01
+delta_tout = 0.00005
+/
+
+
+&HYDRO_PARAMS
+gamma=1.667
+courant_factor=0.8
+slope_type=1
+scheme='muscl'
+/
+
+&REFINE_PARAMS 
+interpol_var=0
+interpol_type=2
+err_grad_d=0.5
+/
+
+
+

@@ -1,0 +1,109 @@
+pro trouve_choc,a,h,nout=nout,size=size,boxlen=boxlen,size_mask=size_mask,separation=separation
+
+;lire les données
+
+if not keyword_set(boxlen) then boxlen=2.0d
+if not keyword_set(size_mask) then size_mask=0.092d
+if not keyword_set(separation) then separation=1.0d
+if not keyword_set(size) then size=128
+
+
+data=dblarr(size-1,2)
+abs=dblarr(size)
+ord=dblarr(size)
+
+lecture,a,h,nout=nout,size=size,save=data,type=1
+
+; conversion to number of cells
+size_mask= floor(size_mask*size*1.0d/boxlen)
+separation = floor(separation*size*1.0d0/boxlen)
+
+;ecriture des données
+;openw,lun,'coord_shock',/get_lun
+y =0.0d
+x1=0.0d
+x2=0.0d0
+
+abs[0]=1.0d
+
+for i=1,(size-1) do begin ; pour tous les y
+   if (i lt (size/2.0d -size_mask)) then begin  ; under the masks 
+      for j= 1,(size-1) do begin
+; il faut trouver les 2 chocs et calculer la moyenne
+
+       if ((data[j,i]-data[j-1,i])/data[j-1,i] gt 0.8d)then begin
+          x1 =double(boxlen*j*1.0d/size)
+          y = boxlen*i*1.0d0/size ;  à voir, faut peut etre prendre entre les 2 cellules
+         ; print,x1,y,i,j,'x1,y'
+       endif 
+       if ((data[j-1,i]-data[j,i])/data[j,i] gt 0.8d)then begin
+          x2 = double(boxlen*j*1.0d/size)
+          y = boxlen*i*1.0d/size ;  à voir, faut peut etre prendre entre les 2 cellules
+         ; print,x2,y,i,j,'x2,y'
+       endif 
+
+ ;      printf,lun,x,(y1+y2)/2.0d 
+       
+     endfor
+     abs[i]=(x1+x2)/2.0d
+     ord[i]=y
+  endif
+
+;between the masks 
+  if (( i gt (size/2.0d - size_mask)) and ( i lt (size/2.0d + size_mask))) then begin
+     for j = 0.5d*(size - separation)+size_mask,0.5d*(size+separation)-size_mask do begin
+        if ((data[j,i]-data[j-1,i])/data[j-1,i] gt 0.8d)then begin
+          x1 = boxlen*j*1.0d/size
+          y = boxlen*i*1.0d0/size ;  à voir, faut peut etre prendre entre les 2 cellules
+        ;  print,x1,y,i,j,'  x1,y'
+        endif 
+        if ((data[j-1,i]-data[j,i])/data[j,i] gt 0.8d)then begin
+          x2 = boxlen*j*1.0d/size
+          y = boxlen*i*1.0d/size ;  à voir, faut peut etre prendre entre les 2 cellules
+        ;  print,x2,y,i,j,'  x2,y'
+         ; print,x1,x2,y1,y2,i,j,'   x1,x2,y1,y2,i,j'
+        endif 
+     endfor
+     abs[i]=(x1+x2)/2.0d
+     ord[i]= y
+
+  endif else begin
+
+;above the masks
+    for j= 1,(size-1) do begin
+; il faut trouver les 2 chocs et calculer la moyenne
+       if ((data[j,i]-data[j-1,i])/data[j-1,i] gt 0.8d)then begin
+          x1 = boxlen*j*1.0d/size
+          y = boxlen*i*1.0d0/size ;  à voir, faut peut etre prendre entre les 2 cellules
+         ; print,x1,y,i,j,'x1,y'
+       endif 
+       if ((data[j-1,i]-data[j,i])/data[j,i] gt 0.8d)then begin
+          x2 = boxlen*j*1.0d/size
+          y = boxlen*i*1.0d/size ;  à voir, faut peut etre prendre entre les 2 cellules
+         ; print,x2,y,i,j,'x2,y'
+       endif 
+     endfor           
+     abs[i]=(x1+x2)/2.0d
+     ord[i]=y
+
+ endelse
+
+
+endfor
+for i=1,size-1 do begin
+
+   print,abs[i],ord[i],i
+endfor
+
+stop
+
+
+;close,lun
+
+;lecture et plot
+;openr,lun,'coord_shock'
+
+;enlever les masques!!!!!!!!!
+
+
+end
